@@ -54,7 +54,7 @@ def read(_handle, startDate=None, logName='messages', prefix='', suffix='', filt
         # against the 'msg' column
         _filterStr = ':'.join(filterSplit[1:]) 
         grepPath = gzipped and '/usr/bin/zgrep' or '/bin/grep'
-        cmd = [grepPath] + [_filterStr] + [fileName]
+        cmd = [grepPath] + _filterStr.split() + [fileName]
         p = subprocess.Popen(cmd, stdin=subprocess.PIPE,
                   stdout=subprocess.PIPE, close_fds=True)
         logFile = p.stdout
